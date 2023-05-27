@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="lavender">#8692f7</color>
+
+    <!--   Màu cho Dots -->
+    <color name="inactive">#808080</color>
+    <color name="active">#000000</color>
+    <color name="holo_blue_light">#33B5E5</color>
+
+
+    //onboarding colors
+    <color name="background">#F0F4F3</color>
+    <color name="buttontext">#50C2C9</color>
+
+    //indicator color
+    <color name="_inactive">#C4C4C4</color>
+    <color name="_active">#50C2C9</color>
+
+
+
+    <color name="background_color">#FBFBFD</color>
+    <color name="background_color_50">#B3FFFFFF</color>
+    <color name="text_color_header">#323232</color>
+    <color name="text_color_description">#616161</color>
+
+
+    <color name="about_us_color_ID_Name">#FF8303</color>
+
+
+</resources>
