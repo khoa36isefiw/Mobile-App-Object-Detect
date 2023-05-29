@@ -60,16 +60,13 @@
                     android:textSize="16dp"
                     app:cornerRadius="10dp"
                     android:textColor="#6D67E4"
-                    />
 
+                    />
 
 
 
             </LinearLayout>
 
-
-
-            <!-- Add a View Divider Here -->
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -78,40 +75,17 @@
                     android:id="@+id/edtTextToTranslate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corner_edit_text_input"
                     android:hint="Text To Translate"
                     android:maxHeight="250dp"
-                    android:paddingLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingTop="5dp"
+                    android:textSize="20sp"
                     android:scrollbars="vertical"
-                    android:textSize="20sp" />
-
+                    android:paddingLeft="16dp"
+                    android:paddingTop="5dp"
+                    android:background="@drawable/rounded_corner_edit_text_input"
+                     />
 
             </ScrollView>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnTranslate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_baseline_g_translate_24"
-                android:textColor="#150050"
-                android:textSize="20dp"
-                app:cornerRadius="10dp"
-                android:layout_above="@+id/sperate_view"
-                android:layout_below="@id/edtTextToTranslate"
-                app:backgroundTint="#5CB8E4"
-                android:textStyle="bold"
-                android:layout_alignParentBottom="false"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="Translate" />
 
-            <View
-                android:id="@+id/sperate_view"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginBottom="5dp"
-                android:background="@android:color/darker_gray"/>
 
 
             <RelativeLayout
@@ -150,7 +124,6 @@
                     android:layout_marginTop="265dp"
                     android:layout_marginEnd="8dp"
                     android:layout_alignParentEnd="true"
-
                     android:layout_below="@id/txtDestinationTranslated"
                     app:srcCompat="@drawable/img_copy_circle_64"
                     tools:ignore="NotSibling" />
@@ -174,7 +147,19 @@
     <!--    Language 1 translate to L2-->
 
 
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTranslate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_g_translate_24"
+        android:textColor="#150050"
+        android:textSize="20dp"
+        app:cornerRadius="10dp"
+        app:backgroundTint="#5CB8E4"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:text="Translate"
+        />
 
 
 </RelativeLayout>

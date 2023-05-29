@@ -75,7 +75,15 @@
                 android:textSize="12sp"
                 />
 
+            <ImageView
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:id="@+id/imgCopy"
+                android:src="@drawable/ic_copy_36"
 
+                />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLuanSpeech"
                 android:layout_width="match_parent"
@@ -96,7 +104,11 @@
                 android:layout_marginEnd="5dp"
                 />
 
+
+
         </LinearLayout>
+
+
 
     </ScrollView>
 

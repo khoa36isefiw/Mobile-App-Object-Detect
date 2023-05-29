@@ -39,4 +39,10 @@ dependencies {
 
     // add text recognition google library
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.0'
+
+    // translate to another languages
+    implementation 'com.google.mlkit:translate:17.0.1'
+
+    // splash screen
+    implementation 'com.airbnb.android:lottie:4.2.2'
 }

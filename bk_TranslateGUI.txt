@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Translate.TranslateActivity">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_above="@id/optionsLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtTextToTranslate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Text To Translate"
+                android:minHeight="100dp"
+                android:layout_gravity="start"
+                android:textSize="20sp"
+                />
+
+            <!-- Display Translated Text-->
+            <TextView
+                android:id="@+id/txtDestinationTranslated"
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:layout_marginTop="10dp"
+                android:text="Nội dung được dịch ra"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!--    Language 1 translate to L2-->
+    <LinearLayout
+        android:id="@+id/optionsLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@id/btnTranslate">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnChoose_SourceLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="English"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:backgroundTint="#FFD966"
+            android:layout_weight="1"
+            app:cornerRadius="10dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnChoose_DestinationLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Japan"
+            app:backgroundTint="#86C8BC"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            app:cornerRadius="10dp"
+            android:textColor="#6D67E4"
+
+            />
+
+
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTranslate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_g_translate_24"
+        android:textColor="#150050"
+        android:textSize="20dp"
+        app:cornerRadius="10dp"
+        app:backgroundTint="#5CB8E4"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:text="Translate"
+        />
+
+
+</RelativeLayout>

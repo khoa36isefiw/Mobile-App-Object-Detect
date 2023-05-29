@@ -12,18 +12,23 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -70,6 +75,8 @@ public class ScanActivity extends AppCompatActivity {
     // Speech
     private TextToSpeech tts;
 
+    // Copy All Text to Clipboard
+    ImageView img_Copy;
 
 
     @Override
@@ -96,6 +103,8 @@ public class ScanActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
 
         textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+
+        img_Copy = findViewById(R.id.imgCopy);
 
 
         // show image dialog
@@ -148,6 +157,32 @@ public class ScanActivity extends AppCompatActivity {
                 Log.e("Move to:", "Translate Text");
             }
         });
+
+
+        img_Copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyAllText();
+            }
+        });
+    }
+
+
+    private void copyAllText() {
+
+        // Kiểm tra nếu trong Edit Text Regcognition có rỗng không?
+            if (!TextUtils.isEmpty(editTextRegText.getText().toString())) { // khác rỗng thực hiện copy
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("Copy",editTextRegText.getText().toString());
+                clipboardManager.setPrimaryClip(clipData);
+                Log.e("Text is", "Copied! ");
+                Toast.makeText(ScanActivity.this, "Text Copied...",Toast.LENGTH_SHORT).show();
+            }
+
+            else {  // thông báo Empty không copy được
+                Toast.makeText(ScanActivity.this, "Luân Bảo là EMPTY!, Cannot copy",Toast.LENGTH_SHORT).show();
+            }
+
     }
 
 
@@ -188,7 +223,12 @@ public class ScanActivity extends AppCompatActivity {
             Log.e(TAG, "recognizeTextFromImage: ", e);
             Toast.makeText(ScanActivity.this, "Failed preparing image due to...",Toast.LENGTH_SHORT).show();
         }
+
+
     }
+
+
+
 
     private void showInputImageDialog() {
         PopupMenu popupMenu = new PopupMenu(this, btn_inputImage);
