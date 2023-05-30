@@ -1,0 +1,15 @@
+1. Chỉnh lại GUI cho Scan Image
+    + Các button chức năng cho nó như dạng của tablayout.
+            Nhưng chỉ để thực hiện chức năng chứ không chuyển trang
+    + Thêm Scroll View
+        _ M1: cho toàn bộ view của Scan.
+                 Nếu lượng input của chữ đầu vào quá nhiều thì mất đi tab function?
+        _ M2: thêm scroll view cho mỗi edit text là nhanh nhất?
+    + Chỉnh lại màu cho 2 button
+
+    + Font size cho cỡ chữ dưới tab layout
+
+
+
+
+

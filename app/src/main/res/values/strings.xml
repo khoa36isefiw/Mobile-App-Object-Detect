@@ -40,5 +40,13 @@
     <string name="home_slogan">Chiisana Koi no Uta</string>
     <string name="home_title"> Kara | Kobasolo ft. Asako </string>
 
+    <string name="tab_icon_description">Tab Icons</string>
 
+    <string name="st">Text is here...</string>
+
+<!--    tab layout for Scan-->
+    <string name="scan_tab_1">Speech</string>
+    <string name="scan_tab_2">Translate</string>
+    <string name="scan_tab_3">Copy</string>
+    <!-- Other string resources here -->
 </resources>

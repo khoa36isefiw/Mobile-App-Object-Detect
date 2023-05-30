@@ -1,13 +1,4 @@
-package hcmute.edu.vn.chaydiemoi.Scan;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+package hcmute.edu.vn.chaydiemoi.Home;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,6 +9,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,13 +22,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TableLayout;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -45,13 +48,12 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import java.util.Locale;
 
-import hcmute.edu.vn.chaydiemoi.Home.Tab;
 import hcmute.edu.vn.chaydiemoi.MainActivity;
 import hcmute.edu.vn.chaydiemoi.R;
+import hcmute.edu.vn.chaydiemoi.Scan.ScanActivity;
 import hcmute.edu.vn.chaydiemoi.Translate.TranslateActivity;
 
-public class ScanActivity extends AppCompatActivity {
-
+public class Tab extends AppCompatActivity {
     //GUI
     private MaterialButton btn_inputImage, btn_recognizeText, btn_LuanSpeech, btn_LuanTranslate, btn_Tab;
     private ShapeableImageView imgInput;
@@ -80,20 +82,22 @@ public class ScanActivity extends AppCompatActivity {
     ImageView img_Copy;
 
 
+    TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan);
+        setContentView(R.layout.test_tab_layout);
 
 
-        //init GUI Views
         btn_inputImage = findViewById(R.id.btnInputImage);
         btn_recognizeText = findViewById(R.id.btnRecognizeText);
-        btn_LuanSpeech = findViewById(R.id.btnLuanSpeech);
-        btn_LuanTranslate = findViewById(R.id.btnLuanTranslate);
         imgInput = findViewById(R.id.imgView);
         editTextRegText = findViewById(R.id.edtRecognizeText);
-        btn_Tab = findViewById(R.id.btnTest);
+
+        // change another color when we click on some tabs
+
+        tabLayout = findViewById(R.id.tabIcon);
 
 
         // init array of permissions required for camera and gallery
@@ -106,10 +110,21 @@ public class ScanActivity extends AppCompatActivity {
 
         textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
 
-        img_Copy = findViewById(R.id.imgCopy);
 
+//        editTextRegText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // khi click vào edit Text thì clear đi nội dung có nó
+//                //editTextRegText.setText("");
+//            }
+//        });
 
         // show image dialog
+
+        // There are 2 options to input IMAGE
+            //  -- Camera
+            //  -- Gallery
+
         btn_inputImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +137,7 @@ public class ScanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (imageUri == null) {
                     // means we haven't image yet
-                    Toast.makeText(ScanActivity.this, "Please, Pick Image...",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Tab.this, "Please, Pick Image...",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     // picked image --> recognize
@@ -132,51 +147,49 @@ public class ScanActivity extends AppCompatActivity {
         });
 
 
-        // Speech the text that just recognized. But only English!
-        // xài đỡ cái này trước đã
-        btn_LuanSpeech.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
-                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status == TextToSpeech.SUCCESS) {
-                            tts.setLanguage(Locale.US);
-                            tts.setSpeechRate(1.0f);
-                            tts.speak(editTextRegText.getText().toString() ,TextToSpeech.QUEUE_ADD, null);
-                        }
-                    }
-                });
+            public void onTabSelected(TabLayout.Tab tab) {
+                // Get the position of the selected tab
+                int tabPosition = tab.getPosition();
+
+                // Perform some action based on the selected tab
+                switch (tabPosition) {
+                    case 0: // speaker
+                        // Perform some action for the third tab
+                        speechText_OnlyENGLISH();
+                        break;
+                    case 1: // open transalte GUI
+                        Intent intent = new Intent(Tab.this , TranslateActivity.class);
+                        startActivity(intent);
+                        Log.e("Move to:", "Translate Text");
+                        break;
+                    case 2:     // Copy all Text in EditText is recognized
+
+                        // Show a Toast message for the first tab
+                        copyAllText();
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                // Do nothing
             }
         });
 
-        // move to translate activity
-        btn_LuanTranslate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ScanActivity.this , TranslateActivity.class);
-                startActivity(intent);
-                Log.e("Move to:", "Translate Text");
-            }
-        });
 
-
-        img_Copy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                copyAllText();
-            }
-        });
-
-
-        btn_Tab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ScanActivity.this , Tab.class);
-                startActivity(intent);
-                Log.e("Move to:", "Tab Test Layout");
-            }
-        });
     }
 
 
@@ -188,13 +201,27 @@ public class ScanActivity extends AppCompatActivity {
             ClipData clipData = ClipData.newPlainText("Copy",editTextRegText.getText().toString());
             clipboardManager.setPrimaryClip(clipData);
             Log.e("Text is", "Copied! ");
-            Toast.makeText(ScanActivity.this, "Text Copied...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Tab.this, "Text Copied...",Toast.LENGTH_SHORT).show();
         }
 
         else {  // thông báo Empty không copy được
-            Toast.makeText(ScanActivity.this, "Luân Bảo là EMPTY!, Cannot copy",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Tab.this, "Luân Bảo là EMPTY!, Cannot copy",Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void speechText_OnlyENGLISH() {
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    tts.setLanguage(Locale.US);
+                    tts.setSpeechRate(1.0f);
+                    Log.e("Starting:", "Speech");
+                    tts.speak(editTextRegText.getText().toString() ,TextToSpeech.QUEUE_ADD, null);
+                }
+            }
+        });
     }
 
 
@@ -224,7 +251,7 @@ public class ScanActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
                             Log.e(TAG, "onFailure: ", e);
-                            Toast.makeText(ScanActivity.this, "Failed recognizing text due to" +e.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Tab.this, "Failed recognizing text due to" +e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -233,7 +260,7 @@ public class ScanActivity extends AppCompatActivity {
             progressDialog.dismiss();
             //e.printStackTrace();
             Log.e(TAG, "recognizeTextFromImage: ", e);
-            Toast.makeText(ScanActivity.this, "Failed preparing image due to...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Tab.this, "Failed preparing image due to...",Toast.LENGTH_SHORT).show();
         }
 
 
@@ -258,7 +285,7 @@ public class ScanActivity extends AppCompatActivity {
                     // cam is clicked, check if cam permission is granted or not?
                     Log.d(TAG, "onMenuItemClick: Camera Clicked...");
                     if(checkCameraPermissions()) {
-                        // camera permissions greanted, can launch camera intent
+                        // camera permissions granted, can launch camera intent
                         pickImageFromCamera();
                     }
                     else {
@@ -270,7 +297,7 @@ public class ScanActivity extends AppCompatActivity {
                     // gallery is clicked, check if gallery permission is granted or not?
                     Log.d(TAG, "onMenuItemClick: Gallery Clicked...");
                     if (checkStoragePermissions()) {
-//                       // gallery permissions greanted, can launch gallery intent
+//                       // gallery permissions granted, can launch gallery intent
                         pickImageFromGallery();
                     }
                     else {
@@ -310,7 +337,7 @@ public class ScanActivity extends AppCompatActivity {
                     }
                     else {
                         Log.d(TAG, "onActivityResult: Failed");
-                        Toast.makeText(ScanActivity.this, "Don't Upload Image...",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Tab.this, "Don't Upload Image...",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -346,7 +373,7 @@ public class ScanActivity extends AppCompatActivity {
 
                     }
                     else {
-                        Toast.makeText(ScanActivity.this, "Cancelled!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Tab.this, "Cancelled!",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -425,4 +452,5 @@ public class ScanActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }

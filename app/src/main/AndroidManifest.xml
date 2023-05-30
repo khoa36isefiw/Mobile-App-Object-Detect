@@ -16,6 +16,9 @@
         android:theme="@style/Theme.ChayDiEmOi"
         tools:targetApi="31">
         <activity
+            android:name=".Home.Tab"
+            android:exported="false" />
+        <activity
             android:name=".IntroAppActivity"
             android:exported="false" />
         <activity

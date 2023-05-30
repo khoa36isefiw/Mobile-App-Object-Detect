@@ -34,4 +34,8 @@
     <color name="about_us_color_ID_Name">#FF8303</color>
 
 
+    <color name="tab_selected_icon_color">#301E67</color>
+    <color name="tab_unselected_icon_color">#FAF8F1</color>
+
+
 </resources>

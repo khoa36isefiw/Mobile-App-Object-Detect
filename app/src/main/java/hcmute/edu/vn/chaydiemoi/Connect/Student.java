@@ -2,6 +2,7 @@ package hcmute.edu.vn.chaydiemoi.Connect;
 
 public class Student {
     private int image; // set cứng image thông qua drawable nên phải dùng int
+
     private int studentID;
     private int studentName;
 
