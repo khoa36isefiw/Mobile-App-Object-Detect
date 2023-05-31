@@ -45,4 +45,7 @@ dependencies {
 
     // splash screen
     implementation 'com.airbnb.android:lottie:4.2.2'
+
+    // add color for icon
+    implementation 'androidx.core:core:1.6.0'
 }

@@ -74,6 +74,7 @@ public class TranslateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translate);
+        getSupportActionBar().hide();
 
         editText_toTranslate = findViewById(R.id.edtTextToTranslate);
         textView_DestinationTranslated =findViewById(R.id.txtDestinationTranslated);
@@ -361,6 +362,7 @@ public class TranslateActivity extends AppCompatActivity {
         }
 
     }
+
 
 
     private  String sourceLanguageText;

@@ -9,6 +9,81 @@
 
     + Font size cho cỡ chữ dưới tab layout
 
+    + Dùng chung cho toàn bộ app luôn một background cho thống nhất logic bố cục của app
+
+
+2. Làm About App and How To Use APP
+    2.1. Giới thiệu về app
+
+Với sự hỗ trợ của công nghệ OCR (Optical Character Recognition), ứng dụng giúp nhận diện văn bản trên hình 
+ảnh một cách nhanh chóng và chính xác.Sau đó, người dùng có thể dịch văn bản sang nhiều ngôn ngữ khác nhau
+Với tính năng tiện lợi và hiệu quả, ứng dụng scan và dịch text trên hình ảnh đang trở thành một trong những 
+công cụ không thể thiếu đối với những người sử dụng di động vàcần xử lý nhanh chóng các văn bản trên hình ảnh.
+
+        # APP dùng để làm gì?
+            Ứng dụng scan chữ trên hình ảnh không chỉ hỗ trợ quét và chuyển đổi văn bản
+            từ hình ảnh sang dạng văn bản có thể chỉnh sửa, mà còn có tính năng đọc văn bản.
+            Tuy nhiên, ngôn ngữ khuyến khích để sử dụng tính năng đọc văn bản là tiếng Anh.
+                    -- chèn hình ảnh --
+
+            Với tính năng đọc văn bản, bạn có thể dễ dàng nghe lại nội dung văn bản đã được chuyển
+            đổi sang văn bản có thể chỉnh sửa. Tính năng này hỗ trợ các ngôn ngữ khác nhau,
+            tuy nhiên, vì ngôn ngữ tiếng Anh được sử dụng rộng rãi và phổ biến trên toàn thế giới,
+            nên ứng dụng khuyến khích sử dụng tiếng Anh để sử dụng tính năng đọc văn bản.
+                        -- chèn hình ảnh --
+
+            Ngoài tính năng quét chữ, dịch ngôn ngữ và đọc văn bản, ứng dụng còn cung
+            cấp nhiều tính năng khác cho người dùng, bao gồm tùy chỉnh font chữ, định dạng văn bản,
+             chia sẻ và lưu trữ dữ liệu trên đám mây. Bạn có thể tùy chỉnh và lưu trữ
+              văn bản đã chuyển đổi với các font chữ và định dạng khác nhau để phù hợp với nhu cầu của bạn.
+                            -- chèn hình ảnh --
+
+
+
+
+        # APP được viết bằng ngôn ngữ nào?
+        - APP được viết bằng ngôn ngữ JAVA hoàn toàn
+
+
+        # APP ứng dụng những AI, Machine Learning nào?
+            - liệt kê tên:
+                Translation
+                Text recognition v2
+
+            - liệt kê cách import thư viện vào
+
+                implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.0'
+                implementation 'com.google.mlkit:translate:17.0.1'
+
+
+            - Structure của image contains text -> to text
+            https://developers.google.com/ml-kit/vision/text-recognition/v2
+
+
+
+
+
+
+
+
+
+    2.2 Hình ảnh + cách xài app
+
+
+
+
+
+Nên thông nhất các màu lại với nhau
+- Chỉnh màu lại của transalte activity
+- của about app
+
+Thêm transition cho app khi chuyển từ activity này activity khác,
+    activity sang fragment, tab này sang tab khác (Nếu còn thời gian)
+
+
+----Important!
+-- Suy nghĩ requirements của khách hàng yêu cầu thuyết kế trang web --
+
 
 
 

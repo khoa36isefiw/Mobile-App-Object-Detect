@@ -9,7 +9,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -33,6 +35,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -88,7 +92,7 @@ public class Tab extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_tab_layout);
-
+        getSupportActionBar().hide();
 
         btn_inputImage = findViewById(R.id.btnInputImage);
         btn_recognizeText = findViewById(R.id.btnRecognizeText);
@@ -271,9 +275,8 @@ public class Tab extends AppCompatActivity {
 
     private void showInputImageDialog() {
         PopupMenu popupMenu = new PopupMenu(this, btn_inputImage);
-
-        popupMenu.getMenu().add(Menu.NONE, 1, 1, "CAMERA");
-        popupMenu.getMenu().add(Menu.NONE, 2, 2, "GALLERY");
+        MenuItem cameraItem = popupMenu.getMenu().add(Menu.NONE, 1, 1, "CAMERA");
+        MenuItem galleryItem = popupMenu.getMenu().add(Menu.NONE, 2, 2, "GALLERY");
 
         popupMenu.show();
 

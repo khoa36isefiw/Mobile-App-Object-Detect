@@ -24,7 +24,7 @@ public class AboutMemberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_member);
-
+        getSupportActionBar().hide();
 
         // Lấy reference tới các View trong Fragment
         viewPager = findViewById(R.id.view_pager);

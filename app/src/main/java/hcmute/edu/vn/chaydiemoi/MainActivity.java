@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // ẩn đi thanh App Name
+        getSupportActionBar().hide();
+
         cr_AboutUs = findViewById(R.id.crAboutUs);
 
         cr_UseApp = findViewById(R.id.crHowToUseApp);

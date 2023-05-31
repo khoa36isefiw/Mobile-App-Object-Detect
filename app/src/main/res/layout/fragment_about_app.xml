@@ -1,0 +1,172 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+
+    android:paddingTop="4dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".Fragment.AboutAppFragment">
+<!--android:background="@drawable/img_sky_only"-->
+    <FrameLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+
+            android:gravity="top|center_horizontal">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. What is the application used for"
+                android:layout_marginTop="10dp"
+                android:textSize="25sp"
+                android:textColor="@color/holo_blue_light"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_app_nd1"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textAlignment="textStart"
+                android:justificationMode="inter_word"
+                android:padding="6dp"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Some features in App"
+                android:layout_gravity="left"
+                android:textColor="@color/holo_blue_light"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+<!--            add truoc rooif chinrh lai sau-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recognize and extract text from images."
+                android:textColor="@color/holo_blue_light"
+                android:layout_gravity="center"
+
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We apply Machine Learning model Text recognition v2 of Google ML KIT."
+                android:textColor="@color/black"
+                android:lineSpacingExtra="8dp"
+                android:textAlignment="textStart"
+                android:justificationMode="inter_word"
+                android:padding="6dp"
+                android:includeFontPadding="false"
+                android:textSize="15sp"
+                />
+
+<!--            hinh anh cua Google Ml Kit-->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:src="@drawable/img_google_ml_kit"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_app_scan_features"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:justificationMode="inter_word"
+                android:padding="6dp"
+                android:lineSpacingExtra="8dp"
+                android:includeFontPadding="false"
+                android:textSize="15sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Input an Image:"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:src="@drawable/img_about_app_input_image"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Text recognizied from an image:"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:src="@drawable/img_about_app_result_textjpg"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Translation"
+                android:layout_marginTop="16dp"
+
+                android:textColor="@color/holo_blue_light"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You can translate the text that is recognized from an image to another Language. For example, I want to translate the text that I just got from the image to Japanese."
+                android:textColor="@color/black"
+                android:lineSpacingExtra="8dp"
+                android:justificationMode="inter_word"
+                android:textSize="15sp"
+                />
+
+            <ImageView
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_about_app_translate"
+                />
+
+
+
+
+        </LinearLayout>
+        <!-- TODO: Add more views here -->
+
+    </FrameLayout>
+
+</ScrollView>

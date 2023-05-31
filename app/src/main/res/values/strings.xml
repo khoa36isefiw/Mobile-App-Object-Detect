@@ -44,9 +44,19 @@
 
     <string name="st">Text is here...</string>
 
-<!--    tab layout for Scan-->
+    <!--    tab layout for Scan-->
     <string name="scan_tab_1">Speech</string>
     <string name="scan_tab_2">Translate</string>
     <string name="scan_tab_3">Copy</string>
     <!-- Other string resources here -->
+
+
+    <!-- region for about app - How to Use APP -->
+
+
+    <!--    About APP-->
+    <string name="about_app_nd1">With the support of OCR (Optical Character Recognition) technology, the application helps to recognize text on images quickly and accurately. The user can then translate the text into various languages. With convenient and effective features, the application to scan and translate text on images is becoming one of the indispensable tools for mobile users who need to quickly process text on images.</string>
+    <string name="about_app_scan_features">When you want to get the text in the image out instead of having to retype it manually, you can remove the image containing the content you want to get the text out. This is an example of when you remove an image that contains the text.</string>
+    
+
 </resources>

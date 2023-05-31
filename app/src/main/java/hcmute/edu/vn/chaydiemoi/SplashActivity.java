@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_splash);
-
+        getSupportActionBar().hide();
 
         new Handler().postDelayed(new Runnable() {
             @Override
