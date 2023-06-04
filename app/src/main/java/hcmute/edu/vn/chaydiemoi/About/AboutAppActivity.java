@@ -19,6 +19,7 @@ import hcmute.edu.vn.chaydiemoi.R;
 public class AboutAppActivity extends AppCompatActivity {
 
 
+    //sử dụng ViewPager2 và TabLayout để hiển thị các fragment khác nhau
     ViewPager2 viewPager2;
     TabLayout tabLayout_aboutApp;
 
@@ -29,7 +30,7 @@ public class AboutAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_app);
 
-        // hide the Support Acton Bar
+        // ẩn đi thanh tiêu đề
         getSupportActionBar().hide();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -43,20 +44,19 @@ public class AboutAppActivity extends AppCompatActivity {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 switch (position) {
+                    // định nghĩa có 2 tab là Usage và About App
                     case 0:
-                        tab.setText("Usage");
+                        tab.setText("Usage");   // xét text
+                        // xét icon cho text này
                         tab.setIcon(getResources().getDrawable(R.drawable.ic_baseline_document_scanner_24));
-                        BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.black));
-                        badgeDrawable.setVisible(true);
+
+
                         break;
 
                     case 1:
                         tab.setText("About APP");
                         tab.setIcon(getResources().getDrawable(R.drawable.ic_about));
-                        BadgeDrawable badgeDrawable1 = tab.getOrCreateBadge();
-                        badgeDrawable1.setBackgroundColor(getResources().getColor(R.color.black));
-                        badgeDrawable1.setVisible(true);
+
                         break;
                 }
             }

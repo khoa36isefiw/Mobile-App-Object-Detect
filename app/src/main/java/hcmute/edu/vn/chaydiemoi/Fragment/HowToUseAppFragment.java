@@ -1,13 +1,22 @@
 package hcmute.edu.vn.chaydiemoi.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import hcmute.edu.vn.chaydiemoi.Adapter.AboutUs_ViewPageAdapter;
+import hcmute.edu.vn.chaydiemoi.MainActivity;
 import hcmute.edu.vn.chaydiemoi.R;
 
 /**
@@ -15,7 +24,11 @@ import hcmute.edu.vn.chaydiemoi.R;
  * Use the {@link HowToUseAppFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HowToUseAppFragment extends Fragment {
+public class HowToUseAppFragment extends Fragment{
+
+    ViewPager viewPager;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,10 +70,38 @@ public class HowToUseAppFragment extends Fragment {
         }
     }
 
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//
+//        View view = inflater.inflate(R.layout.fragment_how_to_use_app, container, false);
+//        viewPager = view.findViewById(R.id.view_pager);
+//        mDotLayout = view.findViewById(R.id.indicator_layout);
+//
+//        //return inflater.inflate(R.layout.fragment_how_to_use_app, container, false);
+//
+//        // Thực hiện các thao tác khác với các View này
+//        //aboutUs_viewPageAdapter = new AboutUs_ViewPageAdapter(getActivity() );
+//        howToUseApp_viewPagerApdater = new HowToUseApp_ViewPagerApdater(requireContext());
+//        viewPager.setAdapter(howToUseApp_viewPagerApdater);
+//
+//        setUpindicator(0);
+//        viewPager.addOnPageChangeListener(listener);
+//
+//        return view;
+//
+//    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_how_to_use_app, container, false);
+        View view = inflater.inflate(R.layout.fragment_how_to_use_app, container, false);
+
+        return view;
     }
+
+
+
 }

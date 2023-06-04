@@ -24,7 +24,7 @@
                 android:id="@+id/optionsLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="24dp"
                 android:orientation="horizontal"
                 android:layout_above="@id/btnTranslate">
 
@@ -127,18 +127,18 @@
 
 
 
-                        <TextView
-                            android:id="@+id/txtDestinationTranslated"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Nội dung được dịch ra"
-                            android:textSize="20sp"
-                            android:scrollbars="vertical"
-                            android:background="@drawable/rounded_corner"
-                            android:paddingLeft="16dp"
-                            android:paddingTop="2dp" />
+                    <TextView
+                        android:id="@+id/txtDestinationTranslated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nội dung được dịch ra"
+                        android:textSize="20sp"
+                        android:scrollbars="vertical"
+                        android:background="@drawable/rounded_corner"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="2dp" />
 
-                        <!-- Thêm các View khác vào đây -->
+                    <!-- Thêm các View khác vào đây -->
 
 
                 </ScrollView>
@@ -147,10 +147,9 @@
                     android:id="@+id/imgCopy_TextViewTranslated"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginTop="265dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="270dp"
+                    android:layout_marginEnd="94dp"
                     android:layout_alignParentEnd="true"
-
                     android:layout_below="@id/txtDestinationTranslated"
                     app:srcCompat="@drawable/img_copy_circle_64"
                     tools:ignore="NotSibling" />
@@ -159,11 +158,58 @@
                     android:id="@+id/imgPaste_inEditText"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginTop="265dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="270dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_toStartOf="@id/imgCopy_TextViewTranslated"
                     android:layout_below="@id/txtDestinationTranslated"
                     app:srcCompat="@drawable/img_paste" />
+
+                <ImageView
+                    android:id="@+id/imgSpeech_inTextView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="270dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toStartOf="@id/imgPaste_inEditText"
+                    android:layout_below="@id/txtDestinationTranslated"
+                    app:srcCompat="@drawable/img_sound" />
+
+                <TextView
+                    android:id="@+id/text_Paste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paste"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@id/imgPaste_inEditText"
+                    android:layout_alignEnd="@id/imgPaste_inEditText"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/text_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speech"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@id/imgSpeech_inTextView"
+                    android:layout_alignEnd="@id/imgSpeech_inTextView"
+                    android:layout_marginTop="4dp" />
+
+
+                <TextView
+                    android:id="@+id/text_Copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Copy"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@id/imgCopy_TextViewTranslated"
+                    android:layout_alignEnd="@id/imgCopy_TextViewTranslated"
+                    android:paddingTop="2dp"
+                    android:layout_marginTop="4dp"/>
 
             </RelativeLayout>
 

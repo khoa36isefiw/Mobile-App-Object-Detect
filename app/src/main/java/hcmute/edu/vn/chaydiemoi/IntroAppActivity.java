@@ -17,6 +17,9 @@ import hcmute.edu.vn.chaydiemoi.Adapter.ViewPagerAdapter;
 
 public class IntroAppActivity extends AppCompatActivity {
 
+    //ViewPager và LinearLayout được khởi tạo
+    // để hiển thị các trang/slide thông tin và chỉ báo.
+
     ViewPager mSLideViewPager;
     LinearLayout mDotLayout;
     Button backbtn, nextbtn, skipbtn;
@@ -35,9 +38,11 @@ public class IntroAppActivity extends AppCompatActivity {
         nextbtn = findViewById(R.id.nextbtn);
         skipbtn = findViewById(R.id.skipButton);
 
+        // set events for some buttons
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 if (getitem(0) > 0){
 
@@ -52,9 +57,13 @@ public class IntroAppActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (getitem(0) < 3)
+                // nếu item này trong khoảng 0 < 2 thì tiếp tục chuyển sang slide khác
+
+                if (getitem(0) < 2)
                     mSLideViewPager.setCurrentItem(getitem(1),true);
                 else {
+
+                    // nếu > 2 thì chuyển sang giao diện Main App
 
                     // Main Activity --> Main Home App
                     Intent i = new Intent(IntroAppActivity.this, MainActivity.class);
@@ -66,11 +75,10 @@ public class IntroAppActivity extends AppCompatActivity {
             }
         });
 
+        // Bay tới Main APp
         skipbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent i = new Intent(IntroAppActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
@@ -82,39 +90,42 @@ public class IntroAppActivity extends AppCompatActivity {
         mDotLayout = (LinearLayout) findViewById(R.id.indicator_layout);
 
 
-        ArrayList<Integer> imgList = new ArrayList<>();
-        imgList.add(R.drawable.img_textrecog);
-        imgList.add(R.drawable.img_translate22);
-        imgList.add(R.drawable.img_speech);
-
-
-
         viewPagerAdapter = new ViewPagerAdapter(this);
 
         mSLideViewPager.setAdapter(viewPagerAdapter);
 
+        // Phương thức setUpindicator() được gọi để thiết lập index, position của image
         setUpindicator(0);
         mSLideViewPager.addOnPageChangeListener(viewListener);
 
     }
 
 
+
+    // có thể hiểu một image như là một trang
+    // khi chuyển từ hình ảnh này sang hình ảnh khác thò nó chuyển trang
+
     public void setUpindicator(int position){
 
+        // Một mảng TextView dùng để hiển thị các chấm trang và
         dots = new TextView[3];
         mDotLayout.removeAllViews();
 
+        // Mỗi TextView được thiết lập để hiển thị một chấm chỉ báo và màu sắc được đặt là màu chưa hoạt động.
         for (int i = 0 ; i < dots.length ; i++){
 
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.inactive,getApplicationContext().getTheme()));
+            // chuyển sang hình khác thì "position i" trở thành inactive
+
+            dots[i].setTextColor(getResources().getColor(R.color._inactive,getApplicationContext().getTheme()));
             mDotLayout.addView(dots[i]);
 
         }
 
-        dots[position].setTextColor(getResources().getColor(R.color.active,getApplicationContext().getTheme()));
+        //vị trí được chỉ định bởi "position" được thiết lập để hiển thị màu sắc hoạt động. đã được định nghĩa
+        dots[position].setTextColor(getResources().getColor(R.color._active,getApplicationContext().getTheme()));
 
     }
 
@@ -147,8 +158,12 @@ public class IntroAppActivity extends AppCompatActivity {
         }
     };
 
+    // hàm này dùng để  để lấy trang hiện tại của ViewPager
+
+    //xác định trang kế tiếp/trước khi người dùng nhấp vào các nút back/next.
     private int getitem(int i){
 
+        // chuyển sang một slidee image mới
         return mSLideViewPager.getCurrentItem() + i;
     }
 }

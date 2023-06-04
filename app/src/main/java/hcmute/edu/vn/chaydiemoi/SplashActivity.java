@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import hcmute.edu.vn.chaydiemoi.Connect.Intro;
+
 
 public class SplashActivity extends AppCompatActivity {
 

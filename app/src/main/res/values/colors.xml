@@ -37,5 +37,8 @@
     <color name="tab_selected_icon_color">#301E67</color>
     <color name="tab_unselected_icon_color">#FAF8F1</color>
 
+   <color name="how_to_use_nav">#699fcb</color>
+    <color name="how_to_use_nav_2">#3e5b72</color>
+
 
 </resources>

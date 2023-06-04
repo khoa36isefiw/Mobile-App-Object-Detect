@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -45,7 +46,7 @@ public class TranslateActivity extends AppCompatActivity {
     MaterialButton btn_chooseSourceLanguage, btn_chooseDestinationLanguage, btn_startTranslate;
 
     // Copy and Paste :3
-    ImageView imgView_Copy, imgView_Paste;
+    ImageView imgView_Copy, imgView_Paste, imgView_Speech;
 
     // Exchange 2 Languages to each other
     ImageView img_Exchange;
@@ -67,6 +68,8 @@ public class TranslateActivity extends AppCompatActivity {
     private String destinationLanguageCode = "vi";
     private String destinationLanguageTitle = "Vietnamese";
 
+    // Speech
+    private TextToSpeech tts;
 
 
 
@@ -86,6 +89,9 @@ public class TranslateActivity extends AppCompatActivity {
 
         imgView_Copy = findViewById(R.id.imgCopy_TextViewTranslated);
         imgView_Paste = findViewById(R.id.imgPaste_inEditText);
+
+        // speech
+        imgView_Speech = findViewById(R.id.imgSpeech_inTextView);
 
         // exchange
         img_Exchange = findViewById(R.id.imgExchange);
@@ -147,17 +153,60 @@ public class TranslateActivity extends AppCompatActivity {
             }
         });
 
+        // speech
+        imgView_Speech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                speech_textTranslated();
+            }
+        });
+
+    }
+
+    //để hệ thống đọc  văn bản đã được dịch sang ngôn ngữ khác.
+    private void speech_textTranslated() {
+
+        //lắng nghe sự kiện khởi tạo của TextToSpeech.
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+
+            // phương thức callback được gọi khi TextToSpeech được khởi tạo.
+
+            @Override
+            public void onInit(int status) {
+
+                //kiểm tra xem trạng thái khởi tạo của TextToSpeech có thành công hay không
+                if (status == TextToSpeech.SUCCESS) {
+
+//                    thiết lập ngôn ngữ và tốc độ phát âm
+                    tts.setLanguage(Locale.US); // US
+                    tts.setSpeechRate(1.0f);    // 1.0
+
+                    //sử dụng phương thức "speak" của TextToSpeech để
+                    // phát giọng nói cho văn bản đã được dịch sang ngôn ngữ khác.
+                    tts.speak(textView_DestinationTranslated.getText().toString() ,TextToSpeech.QUEUE_ADD, null);
+                }
+            }
+        });
     }
 
     // swap
+    //swap/ hoán đổi vị trí hai ngôn ngữ được chọn để dịch
+
+    // biến temporary cho 2 biến sau: LanguageCode and LanguageTitle
+    //để lưu trữ giá trị của ngôn ngữ trước khi đổi chỗ chúng.
     String tmpLanguageCode;
     String tmpLanguageTitle;
     private void exchange_twoLanguages() {
+
+        //bắt đầuthực hiện hoán đổi/ vị trí giữa hai ngôn ngữ
+
         // Đổi chỗ 2 ngôn ngữ được chọn
         tmpLanguageCode = sourceLanguageCode;
         tmpLanguageTitle = sourceLanguageTitle;
+
         sourceLanguageCode = destinationLanguageCode;
         sourceLanguageTitle = destinationLanguageTitle;
+
         destinationLanguageCode = tmpLanguageCode;
         destinationLanguageTitle = tmpLanguageTitle;
 
@@ -167,70 +216,76 @@ public class TranslateActivity extends AppCompatActivity {
         textView_DestinationTranslated.setText(sourceText);
 
         // Cập nhật lại các nút và hộp văn bản cho ngôn ngữ đã được đổi chỗ
+
         btn_chooseSourceLanguage.setText(sourceLanguageTitle);
-        editText_toTranslate.setHint("Enter " + sourceLanguageTitle);
+//        editText_toTranslate.setHint("Enter " + sourceLanguageTitle);
         btn_chooseDestinationLanguage.setText(destinationLanguageTitle);
 
+        //cập nhật dữ liệu sau khi đã hoán đổi giữa hai ngôn ngữ.
         invalidateData();
     }
+
+
+
     // Lưu trữ nội dung văn bản đã được dịch từ ngôn ngữ trước đó
     //String translatedText2 = textView_DestinationTranslated.getText().toString().trim();
-    private void exchange_twoLanguages2() {
 
 
-        // Đổi chỗ 2 ngôn ngữ được chọn
-        String tmpLanguageCode = sourceLanguageCode;
-        String tmpLanguageTitle = sourceLanguageTitle;
-        sourceLanguageCode = destinationLanguageCode;
-        sourceLanguageTitle = destinationLanguageTitle;
-        destinationLanguageCode = tmpLanguageCode;
-        destinationLanguageTitle = tmpLanguageTitle;
-
-        // Cập nhật lại các nút và hộp văn bản cho ngôn ngữ đã được đổi chỗ
-        btn_chooseSourceLanguage.setText(sourceLanguageTitle);
-        editText_toTranslate.setHint("Enter " + sourceLanguageTitle);
-        btn_chooseDestinationLanguage.setText(destinationLanguageTitle);
-
-        // Dịch lại nội dung văn bản đã nhập theo ngôn ngữ mới
-
-
-
-        //Log.d(TAG, "Validate Data: destinationLanguageText:  " + translatedText2);
-
-
-        if(sourceLanguageText.isEmpty()) {
-            Toast.makeText(this, "Enter text to translate...", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            startTranslation();
-        }
-    }
-
+    // dán nội dung đã được copy vào trong clipboard gần đây nhất vào trong editText_toTranslate
     private void paste_TextInClipboard() {
+
+        //ClipboardManager được sử dụng để quản lý dữ liệu trong clipboard.
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+        // kiểm tra trong clipboard có dữ liệu không?
         if (clipboard.hasPrimaryClip()) {
+
+
+
             ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+
             if (item != null) {
+                // nếu có dữ liệu trong clipboard
+                // thì lấy dữ liệu đầu tiên trong clipboard "(getItemAt(0))"
+                // gán vào biến textToPaste
+
                 String textToPaste = item.getText().toString();
+
                 // Kiểm tra nội dung của EditText
                 if (!editText_toTranslate.getText().toString().isEmpty()) {
-                    // Nếu EditText không rỗng, xóa
-                    editText_toTranslate.setText("");
+
+                    // Nếu EditText không rỗng, xóa - ý là nó có chữ trong đó đó :")
+                    editText_toTranslate.setText("");       // xóa đi nội dung trong editText này
                 }
+
                 // Dán nội dung copy gần nhất vào EditText
                 editText_toTranslate.setText(textToPaste);
                 Log.e("Text is", "Pasted! ");
+                // Thông báo message cho người dùng đã paste thành công nội dung vừa trong clipboard!
                 Toast.makeText(TranslateActivity.this, "Text is Pasted...", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    // copy nội dung được dịch vào trong clipboard
     private void copy_TextIsTranslated() {
-        // Kiểm tra nếu trong Edit Text Regcognition có rỗng không?
-        if (!TextUtils.isEmpty(textView_DestinationTranslated.getText().toString())) { // khác rỗng thực hiện copy
+        // Kiểm tra nếu trong Edit Text Regcognition có rỗng không/ có chứa nội dung hay không?
+
+        // khác rỗng thực hiện copy - tức lá chứa nội dung trong đó
+        if (!TextUtils.isEmpty(textView_DestinationTranslated.getText().toString())) {
+
+            // ClipboardManager được tạo ra và dữ liệu được lưu trữ trong ClipData
             ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+            //
             ClipData clipData = ClipData.newPlainText("Copy",textView_DestinationTranslated.getText().toString());
-            clipboardManager.setPrimaryClip(clipData);
+
+            // ClipData được gán cho clipboard bằng cách sử dụng phương thức "setPrimaryClip".
+
+            // setPrimaryClip() là phương thức của lớp ClipboardManager sử dụng để ghi dữ liệu vào clipboard.
+            clipboardManager.setPrimaryClip(clipData);      // ghi dữ liệu của clipData vào trong clipboard
+
+
             Log.e("Text is", "Copied! ");
             Toast.makeText(TranslateActivity.this, "Text is Copied...",Toast.LENGTH_SHORT).show();
         }
@@ -242,14 +297,18 @@ public class TranslateActivity extends AppCompatActivity {
     }
 
 
+    //hiển thị danh sách ngôn ngữ và chọn ngôn ngữ sourceLanguage cho ứng dụng
     private void sourceLanguageChoose() {
         // init PopMenu param 1 is context
         // param 2 is the UI View arround which we want to show the Popup Menu
             // to choose source language from list
+
+        //hiển thị danh sách các ngôn ngữ có thể được chọn.
         PopupMenu popupMenu = new PopupMenu(this, btn_chooseSourceLanguage);
 
 
         // from languageArrayList we will display language titles
+        // languagesArrayList chứa danh sách các ngôn ngữ có thể được chọn
         for (int i = 0 ; i < languagesArrayList.size(); i++) {
 
             // keep adding titles in Popup Menu item
@@ -264,6 +323,7 @@ public class TranslateActivity extends AppCompatActivity {
         popupMenu.show();
 
         // handle Popup Menu Item Click
+        // xử lý sự kiện khi người dùng chọn ngôn ngữ nguồn từ danh sách popup menu.
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -271,7 +331,7 @@ public class TranslateActivity extends AppCompatActivity {
                 // get clicked item id which is position/index from the list
                 int position = item.getItemId();
 
-                // get code and title of he language selected
+                // get code and title of the language selected
                 sourceLanguageCode = languagesArrayList.get(position).languageCode;
                 sourceLanguageTitle = languagesArrayList.get(position).languageTitle;
 
@@ -292,6 +352,7 @@ public class TranslateActivity extends AppCompatActivity {
     }
 
 
+    // tương tự như source LanguageChoose
     private void destinationLanguageChoose() {
         PopupMenu popupMenu = new PopupMenu(this, btn_chooseDestinationLanguage);
 
@@ -334,30 +395,37 @@ public class TranslateActivity extends AppCompatActivity {
 
 
 
-
+//  tải danh sách các ngôn ngữ có sẵn và thêm chúng vào một ArrayList để sử dụng trong ứng dụng
     private void loadAvailableLanguages() {
 
         // init language array list  before staring adding data into it
+
+        //lưu trữ danh sách các ngôn ngữ có sẵn.
         languagesArrayList = new ArrayList<>();
 
 
         // get list of all language code like this: en, th, zh, vi
 
+        // lấy danh sách tất cả các ngôn ngữ có sẵn trong ứng dụng
         List<String> languageCodeList = TranslateLanguage.getAllLanguages();
 
         // to make list containing both the languages code 'en' and the Language Title is 'English'
+
+        // duyệt qua sách các ngôn ngữ có sẵn được lấy ra từ 'TranslateLanguage'
         for (String languageCode: languageCodeList) {
 
             //set language title from language code
             // EX en --> English
+            // tên ngôn ngữ được lấy từ mã ngôn ngữ thông qua 'Locale'
             String languageTitle = new Locale(languageCode).getDisplayLanguage();
 
             Log.d("Luân NÈK","Load Available : languageCode" + languageCode);
             Log.d("Luân NÈK","Load Available : languageTitle" + languageTitle);
 
             // prepate language model and add in into list
+            //Lưu trữ mã ngôn ngữ và tên ngôn ngữ.
             ModelLanguages modelLanguages = new ModelLanguages(languageCode, languageTitle);
-            languagesArrayList.add(modelLanguages);
+            languagesArrayList.add(modelLanguages); // add vào danh sách
 
         }
 
@@ -365,9 +433,10 @@ public class TranslateActivity extends AppCompatActivity {
 
 
 
-    private  String sourceLanguageText;
+    private  String sourceLanguageText;     // lưu trữ nội dung văn bản cần dịch
     private void invalidateData() {
 
+        // gán nội dung của editText_toTranslate cho sourceLanguageText
         sourceLanguageText = editText_toTranslate.getText().toString().trim();
 
         Log.d(TAG, "Validate Data: sourceLanguageText:  " + sourceLanguageText);
@@ -375,21 +444,28 @@ public class TranslateActivity extends AppCompatActivity {
 
 
 
+        // kiểm tra đầu vào nếu empty thì thông báo
         if(sourceLanguageText.isEmpty()) {
             Toast.makeText(this, "Enter text to translate...", Toast.LENGTH_SHORT).show();
         }
         else {
+            // bắt đầu dịch
             startTranslation();
         }
 
     }
 
+    // bắt đầu dịch ngôn ngữ đã đc chọn
     private void startTranslation() {
+
+        // hiển thị progress bar thông báo cho người dùng biết rằng 'app đang lấy dữ liệu về'
         progressDialog.setMessage("Processing language model...");
         progressDialog.show();
 
 
         // init TranslatorOptions with source and target languages
+        // đối tượng TranslatorOptions với mã ngôn ngữ nguồn
+        // /và đích được thiết lập từ biến sourceLanguageCode và destinationLanguageCode.
         translatorOptions = new TranslatorOptions.Builder()
                 .setSourceLanguage(sourceLanguageCode)
                 .setTargetLanguage(destinationLanguageCode)
@@ -403,12 +479,14 @@ public class TranslateActivity extends AppCompatActivity {
                 .build();
 
         // start download translation model if require (will download 1st time)
+        // kết nối internet để tải model
         translator.downloadModelIfNeeded(downloadConditions)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void unused) {
+                    public void onSuccess(Void unused) { // tỉa model xuống thành công
                         // translation model ready to be translated, lets translate
 
+                        // bắt đầu dịch
                         Log.d(TAG, "onSuccess model ready starting translate...");
                         progressDialog.setMessage("Translating.....");
 
@@ -441,6 +519,7 @@ public class TranslateActivity extends AppCompatActivity {
                     }
                 })
 
+                // nếu model chưa tải xuống thì bắt đầu tải
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
@@ -451,10 +530,6 @@ public class TranslateActivity extends AppCompatActivity {
                         Toast.makeText(TranslateActivity.this, "Failed to translate due to: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
-
     }
 
 

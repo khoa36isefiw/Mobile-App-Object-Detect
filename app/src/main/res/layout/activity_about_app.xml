@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/purple_200"
+        android:background="#4d7da4"
         />
 
     <androidx.viewpager2.widget.ViewPager2

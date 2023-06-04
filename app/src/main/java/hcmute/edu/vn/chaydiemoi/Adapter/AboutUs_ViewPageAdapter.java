@@ -15,6 +15,7 @@ import hcmute.edu.vn.chaydiemoi.R;
 
 public class AboutUs_ViewPageAdapter extends PagerAdapter {
 
+    // PageAdapter này dùng để hiển thị các thành viên trong nhóm
     private Context context;
     private LayoutInflater layoutInflater;
 

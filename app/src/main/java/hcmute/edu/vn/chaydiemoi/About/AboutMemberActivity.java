@@ -15,6 +15,7 @@ import hcmute.edu.vn.chaydiemoi.R;
 
 public class AboutMemberActivity extends AppCompatActivity {
 
+    // hiển thị các thành viên trong nhóm
     ViewPager viewPager;
     LinearLayout mDotLayout;
     TextView[] dots;
@@ -55,12 +56,12 @@ public class AboutMemberActivity extends AppCompatActivity {
 
             dots[i].setText(Html.fromHtml("&#8226"));
             dots[i].setTextSize(36);
-            dots[i].setTextColor(getResources().getColor(R.color.inactive,getApplicationContext().getTheme()));
+            dots[i].setTextColor(getResources().getColor(R.color._inactive,getApplicationContext().getTheme()));
             mDotLayout.addView(dots[i]);
 
         }
 
-        dots[position].setTextColor(getResources().getColor(R.color.active,getApplicationContext().getTheme()));
+        dots[position].setTextColor(getResources().getColor(R.color.about_us_color_ID_Name,getApplicationContext().getTheme()));
 
     }
 

@@ -9,7 +9,7 @@ import android.view.View;
 
 import hcmute.edu.vn.chaydiemoi.About.AboutAppActivity;
 import hcmute.edu.vn.chaydiemoi.About.AboutMemberActivity;
-import hcmute.edu.vn.chaydiemoi.Home.Tab;
+
 import hcmute.edu.vn.chaydiemoi.Scan.ScanActivity;
 import hcmute.edu.vn.chaydiemoi.Translate.TranslateActivity;
 
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         cr_Scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent i = new Intent(MainActivity.this, ScanActivity.class);
-                Intent i = new Intent(MainActivity.this, Tab.class);
+                Intent i = new Intent(MainActivity.this, ScanActivity.class);
+                //Intent i = new Intent(MainActivity.this, Tab.class);
                 startActivity(i);
                 finish();
 

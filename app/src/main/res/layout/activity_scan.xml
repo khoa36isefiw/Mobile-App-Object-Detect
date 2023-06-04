@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/img_background_dashboard_3"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".Scan.ScanActivity">
+    tools:context=".Scan.ScanActivity"
+    >
 
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_weight="1">
 
-        <!--        Take image from Camera or Gallery-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnInputImage"
+        <LinearLayout
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Take Image"
-            app:cornerRadius="5dp"
-            app:icon="@drawable/ic_baseline_add_a_photo_24"
-            android:layout_weight="1"
-            android:layout_marginEnd="5dp"
-            />
+            android:orientation="horizontal">
 
-        <!--        Recoginze text-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRecognizeText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Recognize Text"
-            app:cornerRadius="5dp"
-            app:icon="@drawable/ic_baseline_document_scanner_24"
-            android:layout_weight="1"
-            android:layout_marginStart="5dp"
-            />
-    </LinearLayout>
+            <!-- Take image from Camera or Gallery -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInputImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Take Image"
+                android:textColor="@color/white"
+                app:backgroundTint="#E57C23"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_baseline_add_a_photo_24"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <!-- Recognize text -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRecognizeText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:backgroundTint="#05BFDB"
+                android:text="Recognize Text"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_baseline_document_scanner_24"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"/>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,62 +71,171 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/holo_blue_light"
+
                 android:text="Recognized Text:"
                 />
 
-            <!-- EditText: Show The Recognized Text            -->
-            <EditText
-                android:id="@+id/edtRecognizeText"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                />
+                android:fillViewport="true"
+                android:layout_height="wrap_content">
+                <!-- EditText: Show The Recognized Text            -->
+                <EditText
+                    android:id="@+id/edtRecognizeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/st"
+                    android:padding="10dp"
+                    android:background="@drawable/rounded_corner_edit_text_input"
+                    android:scrollbars="vertical"
+                    android:layout_marginBottom="85dp"
+                    android:textSize="12sp"
+                    />
 
-            <ImageView
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:id="@+id/imgCopy"
-                android:src="@drawable/ic_copy_36"
-
-                />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLuanSpeech"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Speech The Text"
-                app:cornerRadius="10dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-                />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLuanTranslate"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Translate The Text"
-                app:cornerRadius="10dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-                />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnTest"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Tab"
-                app:cornerRadius="10dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-                />
-
-
+            </ScrollView>
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgCopy_editTextRecognized"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="64dp"
+                app:srcCompat="@drawable/img_copy_text_files"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/text_Copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Copy"
+                android:textSize="16sp"
+                android:textColor="@color/holo_blue_light"
+                android:textStyle="bold"
+                android:layout_below="@id/imgCopy_editTextRecognized"
+                android:layout_alignEnd="@id/imgCopy_editTextRecognized"
+                android:layout_marginTop="40dp"
+                />
+
+            <ImageView
+                android:id="@+id/img_TranslateActivity"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/edtRecognizeText"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="64dp"
+                android:layout_toStartOf="@id/imgCopy_editTextRecognized"
+                app:srcCompat="@drawable/img_earth_languages" />
+
+            <TextView
+                android:id="@+id/text_Paste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Translate"
+                android:textSize="16sp"
+                android:textColor="@color/holo_blue_light"
+                android:textStyle="bold"
+                android:layout_marginRight="-8dp"
+                android:layout_below="@id/img_TranslateActivity"
+                android:layout_alignEnd="@id/img_TranslateActivity"
+                android:layout_marginTop="40dp" />
+
+            <ImageView
+                android:id="@+id/imgSpeech_editTextRecognized"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/edtRecognizeText"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="64dp"
+                android:layout_toStartOf="@id/img_TranslateActivity"
+                app:srcCompat="@drawable/img_speech_tab" />
+
+            <TextView
+                android:id="@+id/text_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speech"
+                android:textColor="@color/holo_blue_light"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_below="@id/imgSpeech_editTextRecognized"
+                android:layout_alignEnd="@id/imgSpeech_editTextRecognized"
+                android:layout_marginTop="40dp" />
+
+        </RelativeLayout>
 
 
-    </ScrollView>
 
-</LinearLayout>
+        <!--        <androidx.cardview.widget.CardView-->
+        <!--            android:id="@+id/cardView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="20dp"-->
+        <!--            app:cardCornerRadius="20dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            android:layout_gravity="bottom">-->
+
+
+        <!--             <com.google.android.material.tabs.TabLayout-->
+        <!--                android:id="@+id/tabIcon"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:tabBackground="@color/tab_unselected_icon_color"-->
+
+        <!--                app:tabIconTint="@color/tab_selected_icon_color"-->
+        <!--                >-->
+
+        <!--                <com.google.android.material.tabs.TabItem-->
+        <!--                    android:id="@+id/tabIconView1"-->
+        <!--                    android:textSize="8sp"-->
+        <!--                    android:layout_width="64dp"-->
+        <!--                    android:layout_height="64dp"-->
+        <!--                    android:icon="@drawable/img_speech_tab"-->
+        <!--                    android:textColor="#DFFFD8"-->
+        <!--                    android:text="@string/scan_tab_1"-->
+
+        <!--                    />-->
+
+
+        <!--                <com.google.android.material.tabs.TabItem-->
+        <!--                    android:id="@+id/tabIconView2"-->
+        <!--                    android:layout_width="84dp"-->
+        <!--                    android:layout_height="84dp"-->
+        <!--                    android:textSize="6sp"-->
+        <!--                    android:layout_weight="0.8"-->
+        <!--                    android:icon="@drawable/img_earth_languages"-->
+        <!--                    android:textColor="#AAE3E2"-->
+        <!--                    android:text="@string/scan_tab_2"-->
+        <!--                    />-->
+
+
+
+        <!--                <com.google.android.material.tabs.TabItem-->
+        <!--                    android:id="@+id/tabIconView3"-->
+        <!--                    android:textColor="#7FE9DE"-->
+        <!--                    android:layout_width="128dp"-->
+        <!--                    android:textSize="8sp"-->
+        <!--                    android:layout_height="128dp"-->
+        <!--                    android:icon="@drawable/img_copy_text_files"-->
+        <!--                    android:text="@string/scan_tab_3"-->
+        <!--                    />-->
+
+        <!--            </com.google.android.material.tabs.TabLayout>-->
+
+        <!--        </androidx.cardview.widget.CardView>-->
+    </LinearLayout>
+
+</ScrollView>

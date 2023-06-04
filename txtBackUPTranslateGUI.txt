@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Translate.TranslateActivity">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_above="@id/optionsLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/optionsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_above="@id/btnTranslate">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnChoose_SourceLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="English"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#FFD966"
+                    android:layout_weight="1"
+                    app:cornerRadius="10dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/imgExchange"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:padding="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/img_exchange_64_green"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnChoose_DestinationLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VietNamese"
+                    app:backgroundTint="#86C8BC"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp"
+                    android:textColor="#6D67E4"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+            <!-- Add a View Divider Here -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtTextToTranslate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_edit_text_input"
+                    android:hint="Text To Translate"
+                    android:maxHeight="250dp"
+                    android:paddingLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:scrollbars="vertical"
+                    android:textSize="20sp" />
+
+
+            </ScrollView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTranslate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_baseline_g_translate_24"
+                android:textColor="#150050"
+                android:textSize="20dp"
+                app:cornerRadius="10dp"
+                android:layout_above="@+id/sperate_view"
+                android:layout_below="@id/edtTextToTranslate"
+                app:backgroundTint="#5CB8E4"
+                android:textStyle="bold"
+                android:layout_alignParentBottom="false"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Translate" />
+
+            <View
+                android:id="@+id/sperate_view"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/darker_gray"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Display Translated Text-->
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:fillViewport="true"
+                    android:layout_marginTop="10dp">
+
+
+
+                        <TextView
+                            android:id="@+id/txtDestinationTranslated"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nội dung được dịch ra"
+                            android:textSize="20sp"
+                            android:scrollbars="vertical"
+                            android:background="@drawable/rounded_corner"
+                            android:paddingLeft="16dp"
+                            android:paddingTop="2dp" />
+
+                        <!-- Thêm các View khác vào đây -->
+
+
+                </ScrollView>
+
+                <ImageView
+                    android:id="@+id/imgCopy_TextViewTranslated"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="265dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_below="@id/txtDestinationTranslated"
+                    app:srcCompat="@drawable/img_copy_circle_64"
+                    tools:ignore="NotSibling" />
+
+                <ImageView
+                    android:id="@+id/imgPaste_inEditText"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="265dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toStartOf="@id/imgCopy_TextViewTranslated"
+                    android:layout_below="@id/txtDestinationTranslated"
+                    app:srcCompat="@drawable/img_paste" />
+
+                <ImageView
+                    android:id="@+id/imgSpeech_inTextView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="265dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toStartOf="@id/imgPaste_inEditText"
+                    android:layout_below="@id/txtDestinationTranslated"
+                    app:srcCompat="@drawable/img_sound" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!--    Language 1 translate to L2-->
+
+
+
+
+
+</RelativeLayout>

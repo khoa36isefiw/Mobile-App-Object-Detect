@@ -76,6 +76,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
+                android:fillViewport="true"
                 android:layout_height="wrap_content">
                 <!-- EditText: Show The Recognized Text            -->
                     <EditText
@@ -94,66 +95,145 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/imgCopy_editTextRecognized"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="64dp"
+                app:srcCompat="@drawable/img_copy_text_files"
+                tools:ignore="NotSibling" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_gravity="bottom">
-
-
-             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabIcon"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/text_Copy"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:tabBackground="@color/tab_unselected_icon_color"
+                android:text="Copy"
+                android:textSize="16sp"
+                android:textColor="@color/holo_blue_light"
+                android:textStyle="bold"
+                android:layout_below="@id/imgCopy_editTextRecognized"
+                android:layout_alignEnd="@id/imgCopy_editTextRecognized"
+                android:layout_marginTop="40dp"
+                />
 
-                app:tabIconTint="@color/tab_selected_icon_color"
-                >
+            <ImageView
+                android:id="@+id/img_TranslateActivity"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/edtRecognizeText"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="64dp"
+                android:layout_toStartOf="@id/imgCopy_editTextRecognized"
+                app:srcCompat="@drawable/img_earth_languages" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabIconView1"
-                    android:textSize="8sp"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:icon="@drawable/img_speech_tab"
-                    android:textColor="#DFFFD8"
-                    android:text="@string/scan_tab_1"
+            <TextView
+                android:id="@+id/text_Paste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Translate"
+                android:textSize="16sp"
+                android:textColor="@color/holo_blue_light"
+                android:textStyle="bold"
+                android:layout_marginRight="-8dp"
+                android:layout_below="@id/img_TranslateActivity"
+                android:layout_alignEnd="@id/img_TranslateActivity"
+                android:layout_marginTop="40dp" />
 
-                    />
+            <ImageView
+                android:id="@+id/imgSpeech_editTextRecognized"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/edtRecognizeText"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="64dp"
+                android:layout_toStartOf="@id/img_TranslateActivity"
+                app:srcCompat="@drawable/img_speech_tab" />
+
+            <TextView
+                android:id="@+id/text_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speech"
+                android:textColor="@color/holo_blue_light"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_below="@id/imgSpeech_editTextRecognized"
+                android:layout_alignEnd="@id/imgSpeech_editTextRecognized"
+                android:layout_marginTop="40dp" />
+
+        </RelativeLayout>
 
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabIconView2"
-                    android:layout_width="84dp"
-                    android:layout_height="84dp"
-                    android:textSize="6sp"
-                    android:layout_weight="0.8"
-                    android:icon="@drawable/img_earth_languages"
-                    android:textColor="#AAE3E2"
-                    android:text="@string/scan_tab_2"
-                    />
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/cardView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:layout_gravity="bottom">-->
+
+
+<!--             <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tabIcon"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:tabBackground="@color/tab_unselected_icon_color"-->
+
+<!--                app:tabIconTint="@color/tab_selected_icon_color"-->
+<!--                >-->
+
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:id="@+id/tabIconView1"-->
+<!--                    android:textSize="8sp"-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:icon="@drawable/img_speech_tab"-->
+<!--                    android:textColor="#DFFFD8"-->
+<!--                    android:text="@string/scan_tab_1"-->
+
+<!--                    />-->
+
+
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:id="@+id/tabIconView2"-->
+<!--                    android:layout_width="84dp"-->
+<!--                    android:layout_height="84dp"-->
+<!--                    android:textSize="6sp"-->
+<!--                    android:layout_weight="0.8"-->
+<!--                    android:icon="@drawable/img_earth_languages"-->
+<!--                    android:textColor="#AAE3E2"-->
+<!--                    android:text="@string/scan_tab_2"-->
+<!--                    />-->
 
 
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabIconView3"
-                    android:textColor="#7FE9DE"
-                    android:layout_width="128dp"
-                    android:textSize="8sp"
-                    android:layout_height="128dp"
-                    android:icon="@drawable/img_copy_text_files"
-                    android:text="@string/scan_tab_3"
-                    />
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:id="@+id/tabIconView3"-->
+<!--                    android:textColor="#7FE9DE"-->
+<!--                    android:layout_width="128dp"-->
+<!--                    android:textSize="8sp"-->
+<!--                    android:layout_height="128dp"-->
+<!--                    android:icon="@drawable/img_copy_text_files"-->
+<!--                    android:text="@string/scan_tab_3"-->
+<!--                    />-->
 
-            </com.google.android.material.tabs.TabLayout>
+<!--            </com.google.android.material.tabs.TabLayout>-->
 
-        </androidx.cardview.widget.CardView>
+<!--        </androidx.cardview.widget.CardView>-->
     </LinearLayout>
 
 </ScrollView>
